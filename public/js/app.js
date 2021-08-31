@@ -7,16 +7,14 @@ form.addEventListener("submit", (event) => {
   messageTwo.textContent = "";
   messageOne.textContent = "Loading...";
   if (search.value)
-    fetch(`http://localhost:3000/forecast?address=${search.value}`).then(
-      (response) => {
-        response.json().then((data) => {
-          if (data.error) {
-            messageOne.textContent = data.error;
-          } else {
-            messageOne.textContent = data.location;
-            messageTwo.textContent = data.forecast;
-          }
-        });
-      }
-    );
+    fetch(`/forecast?address=${search.value}`).then((response) => {
+      response.json().then((data) => {
+        if (data.error) {
+          messageOne.textContent = data.error;
+        } else {
+          messageOne.textContent = data.location;
+          messageTwo.textContent = data.forecast;
+        }
+      });
+    });
 });
